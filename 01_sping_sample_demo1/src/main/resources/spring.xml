@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+  	<bean name="engine" class="com.seed.Engine">
+  	  <property name="type" value="two-stroke" />
+  	  <property name="power" value="350 CC" />
+  	</bean>
+  	
+  	<bean name="bike" class="com.seed.Bike">
+  		<property name="name" value="RE" />
+  		<property name="engine" ref="engine" />
+  	</bean>
+  	
+  	<bean name="employee" class="com.seed.Employee">
+  		<property name="id" value="1" />
+  		<property name="name" value="Jack"/>
+  		<property name="salary" value="5000" />
+  		<property name="vehicle" ref="car" />
+  	</bean>
+  	
+  	<bean name="car" class="com.seed.Car">
+  		<property name="name" value="BMW" />
+  		<property name="engine" ref="engine" />
+  	</bean>
+
+</beans>
