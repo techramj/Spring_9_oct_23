@@ -1,0 +1,20 @@
+<bean name="emp" class="com.seed.Employee">
+</bean>
+
+Employee emp = new Employee();
+
+
+scope of bean:
+1. singleton(default) => getBean("emp") will return the same object
+		             => Eager loading
+		             => when we set attribute lazy-init="true", then object will load lazy
+		             
+2. prototype   => getBean("emp") will return the differnt object
+               =>lazy loading(always lazy)
+               
+3. session
+4. application
+
+
+
+

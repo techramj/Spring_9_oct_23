@@ -8,15 +8,22 @@
         http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
-	<bean name="bike3" class="com.seed.Bike">
-		<property name="name" value="Yezdi"></property>
-		<property name="color" value="grey"></property>
-		
+	<bean name="emp1" class="com.seed.Employee" scope="singleton">
+		<property name="id" value="100"></property>
+		<property name="name" value="Jack"></property>
+		<property name="salary" value="1000"></property>
 	</bean>
-
-	<bean name="bike4" class="com.seed.Bike">
-		<constructor-arg name="name" value="RE"></constructor-arg>
-		<constructor-arg name="color" value="Black"></constructor-arg>
-		<constructor-arg name="price" value="140000"></constructor-arg>
+	
+	<bean name="emp2" class="com.seed.Employee" >
+		<constructor-arg name="id" value="1"></constructor-arg>
+		<constructor-arg name="name" value="Sam"></constructor-arg>
+		<constructor-arg name="salary" value="5000"></constructor-arg>
 	</bean>
+	
+	<bean name="emp3" class="com.seed.Employee" >
+		<constructor-arg index="0" value="11"></constructor-arg>
+		<constructor-arg index="1" value="Sameer"></constructor-arg>
+		<constructor-arg index="2" value="50000"></constructor-arg>
+	</bean>
+	
 </beans>

@@ -9,6 +9,11 @@ public class Bike {
 	public Bike() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	public Bike(String name, String color) {
+		this.name = name;
+		this.color = color;
+	}
 
 	public Bike(String name, String color, int price) {
 		this.name = name;
