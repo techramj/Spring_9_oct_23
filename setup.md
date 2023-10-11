@@ -59,7 +59,7 @@
 # step 6: update the maven project
 
 # step 7: create spring.xml configuration file
-    create the file spring.xml in resources folder and add the below text
+## create the file spring.xml in resources folder and add the below text
 
         <beans xmlns="http://www.springframework.org/schema/beans"
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
