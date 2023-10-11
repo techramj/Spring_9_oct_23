@@ -14,7 +14,7 @@
 		<property name="salary" value="1000"></property>
 	</bean>
 	
-	<bean name="emp2" class="com.seed.Employee" >
+	<bean name="emp2" class="com.seed.Employee" scope="prototype" >
 		<constructor-arg name="id" value="1"></constructor-arg>
 		<constructor-arg name="name" value="Sam"></constructor-arg>
 		<constructor-arg name="salary" value="5000"></constructor-arg>
