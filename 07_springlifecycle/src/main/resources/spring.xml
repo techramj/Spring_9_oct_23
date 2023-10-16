@@ -11,11 +11,21 @@
         http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 
-	 <bean name="bike1" class="com.seed.Bike" init-method="init" destroy-method="customDestroy">
-	 	<property name="name" value="RE" />
-	 	<property name="color" value="Black"/>
-	 </bean>
-	 
-	 <bean class="com.seed.CustomerBeanPostProcessor" />
+	<bean name="bike1" class="com.seed.Bike" init-method="init"
+		destroy-method="customDestroy" scope="prototype">
+		<property name="name" value="RE" />
+		<property name="color" value="Black" />
+	</bean>
+
+	<!-- <bean class="com.seed.CustomerBeanPostProcessor" /> -->
+
+	<bean name="emp" class="com.seed.Employee" scope="singleton"
+		autowire="byName">
+		<property name="name" value="sam" />
+	</bean>
+
+	<bean name="address" class="com.seed.Address" scope="prototype">
+		<property name="city" value="pune" />
+	</bean>
 
 </beans>

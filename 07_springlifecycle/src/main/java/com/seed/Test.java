@@ -12,9 +12,16 @@ public class Test {
 		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
 		
 		System.out.println("-----------------------------------------------------");
-		Bike bike = context.getBean("bike1", Bike.class);
-		System.out.println("bean bike  is ready to used\n"+bike);
+		Employee emp1 = context.getBean("emp", Employee.class);
+		Employee emp2 = context.getBean("emp", Employee.class);
 		
+		System.out.println(emp1 == emp2);
+		System.out.println(emp1.getAddress() == emp2.getAddress());
+		
+		Address add1 = context.getBean("address", Address.class);
+		Address add2 = context.getBean("address", Address.class);
+		System.out.println(emp1.getAddress() == add1);
+		System.out.println(add1 == add2);
 		
 		((AbstractApplicationContext)context).registerShutdownHook();
 	}
