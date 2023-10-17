@@ -7,20 +7,23 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
 import com.seed.Entity.Employee;
 
-@Component("empDao1")
 public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 	
-	@Autowired
-	private Connection con;
+	//@Autowired
+	//private Connection con;
+	private DataSource dataSource;
 
 	@Override
 	public Employee save(Employee emp) {
+		Connection con = getConnection();
+		
 		String insertQuery ="insert into emp(id,name,salary) values (?,?,?)";
 		try(PreparedStatement ps = con.prepareStatement(insertQuery)){
 			ps.setInt(1, emp.getId());
@@ -31,9 +34,20 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 				return emp;
 			}
 		}catch(SQLException e) {
-			
+			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	private Connection getConnection() {
+		Connection con = null;
+		try {
+			con = dataSource.getConnection();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return con;
 	}
 
 	@Override
@@ -50,6 +64,7 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 
 	@Override
 	public Employee findById(int empId) {
+		Connection con = getConnection();
 		String selectByIdQuery ="select * from emp where id =?";
 		try(PreparedStatement ps = con.prepareStatement(selectByIdQuery)){
 			ps.setInt(1, empId);
@@ -68,6 +83,7 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 
 	@Override
 	public List<Employee> findAll() {
+		Connection con = getConnection();
 		String selectByIdQuery ="select * from emp";
 		List<Employee> employees  = new ArrayList<Employee>();
 		try(PreparedStatement ps = con.prepareStatement(selectByIdQuery)){
@@ -85,6 +101,10 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 		}
 		
 		return employees;
+	}
+	
+	public void setDataSource(DataSource dataSource) {
+		this.dataSource = dataSource;
 	}
 
 }

@@ -1,7 +1,11 @@
 package com.seed;
 
+import java.sql.DriverManager;
+
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 
 import com.seed.Entity.Employee;
 import com.seed.dao.EmployeeDao;
@@ -12,17 +16,20 @@ import com.seed.service.EmployeeServiceImpl;
 public class Main {
 	
 	public static void main(String[] args) {
-		ApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
-		EmployeeService empService = (EmployeeService) context.getBean("employeeServiceImpl", EmployeeServiceImpl.class);
+
+		ApplicationContext context = new ClassPathXmlApplicationContext("spring.xml");
+		EmployeeService empService = (EmployeeService) context.getBean("empService", EmployeeServiceImpl.class);
 		System.out.println(empService);
+		
+		//add employee
 		Employee emp = new Employee();
-		emp.setId(10);
-		emp.setName("sam");
-		emp.setSalary(50000);
-		 
+		emp.setId(1);
+		emp.setName("Sanket");
+		emp.setSalary(20000);
+		
 		empService.addEmployee(emp);
 	}
 	
 	
-
 }
+
