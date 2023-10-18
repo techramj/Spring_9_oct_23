@@ -16,16 +16,13 @@ import com.seed.Entity.Employee;
 
 public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 	
-	//@Autowired
-	//private Connection con;
 	private DataSource dataSource;
 
 	@Override
 	public Employee save(Employee emp) {
 		Connection con = getConnection();
 		
-		String insertQuery ="insert into emp(id,name,salary) values (?,?,?)";
-		try(PreparedStatement ps = con.prepareStatement(insertQuery)){
+		try(PreparedStatement ps = con.prepareStatement(INSERT_QUERY)){
 			ps.setInt(1, emp.getId());
 			ps.setString(2, emp.getName());
 			ps.setDouble(3, emp.getSalary());
@@ -64,6 +61,7 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 
 	@Override
 	public Employee findById(int empId) {
+		System.out.println(this.getClass());
 		Connection con = getConnection();
 		String selectByIdQuery ="select * from emp where id =?";
 		try(PreparedStatement ps = con.prepareStatement(selectByIdQuery)){
@@ -83,6 +81,7 @@ public class EmployeeDaoImplUsingJdbc implements EmployeeDao {
 
 	@Override
 	public List<Employee> findAll() {
+		System.out.println(this.getClass());
 		Connection con = getConnection();
 		String selectByIdQuery ="select * from emp";
 		List<Employee> employees  = new ArrayList<Employee>();
