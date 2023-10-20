@@ -59,8 +59,7 @@ public class EmployeeDaoImplUsingSpringJdbc implements EmployeeDao {
 			emp.setName(rs.getString(2));
 			emp.setSalary(rs.getDouble(3));
 			return emp;
-		}
-		
+		}	
 	}
 
 }
